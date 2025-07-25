@@ -92,7 +92,7 @@ class PhotographerController extends Controller
             'start_time_of_attention' => "08:00:00",
             'end_time_of_attention' => "20:00:00",
             'price_per_hour' => 50000, // Precio por defecto
-            'profile_picture' => "images/blessd2.jpg"
+            'profile_picture' => "images/profile_pictures/blessd2.jpg"
         ]);
 
         // Crear registros en photographer_services para cada servicio con precio por defecto
@@ -440,7 +440,7 @@ class PhotographerController extends Controller
 
         if ($request->hasFile('profile_picture')) {
             // Eliminar la foto anterior si existe
-            if ($photographer->profile_picture && $photographer->profile_picture !== 'images/blessd2.jpg') {
+            if ($photographer->profile_picture && $photographer->profile_picture !== 'images/profile_pictures/blessd2.jpg') {
                 $oldImagePath = public_path($photographer->profile_picture);
                 if (file_exists($oldImagePath)) {
                     unlink($oldImagePath);

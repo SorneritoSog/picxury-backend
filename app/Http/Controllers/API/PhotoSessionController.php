@@ -383,6 +383,58 @@ class PhotoSessionController extends Controller
     }
 
     /**
+     * Actualiza el estado de la sesión de fotos a "Anulada".
+     */
+    public function cancelPhotoSession($photoSessionId)
+    {   
+        // Buscar la sesión de fotos por ID
+        $photoSession = PhotoSession::find($photoSessionId);
+
+        if (!$photoSession) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Sesión de fotos no encontrada.'
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        // Cambiar el estado de la sesión de fotos a "Anulada"
+        $photoSession->status = 'Anulada';
+        $photoSession->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Sesión de fotos cancelada exitosamente.',
+            'data' => $photoSession
+        ], Response::HTTP_OK);
+    }
+
+    /**
+     * Restaura una sesión de fotos anulada, cambiando su estado a "Por realizar".
+     */
+    public function restorePhotoSession($photoSessionId)
+    {
+        // Buscar la sesión de fotos por ID
+        $photoSession = PhotoSession::find($photoSessionId);
+
+        if (!$photoSession) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Sesión de fotos no encontrada.'
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        // Cambiar el estado de la sesión de fotos a "Por realizar"
+        $photoSession->status = 'Por realizar';
+        $photoSession->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Sesión de fotos restaurada exitosamente.',
+            'data' => $photoSession
+        ], Response::HTTP_OK);
+    }
+
+    /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)

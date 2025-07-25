@@ -157,6 +157,11 @@ Route::put('photographer/{photograogerId}/photo-sessions/{photoSessionId}/update
 Route::put('photographer/{photograogerId}/photo-sessions/{photoSessionId}/update-date-time-location', [PhotoSessionController::class, 'updateDateAndLocation']);
 // Ruta para confirmar una selección de fotos para una sesión de fotos.
 Route::put('photo-sessions/{photoSessionId}/confirm-photo-selection', [PhotoSessionController::class, 'confirmPhotoSelection']);
+// Ruta para anular una sesión de fotos.
+Route::put('photo-sessions/{photoSessionId}/cancel', [PhotoSessionController::class, 'cancelPhotoSession']);
+// Ruta para restaurar una sesión de fotos anulada.
+Route::put('photo-sessions/{photoSessionId}/restore', [PhotoSessionController::class, 'restorePhotoSession']);
+
 
 // -- RUTAS PARA EL CLIENTE --
 // Ruta para obtener los clientes del fotógrafo
